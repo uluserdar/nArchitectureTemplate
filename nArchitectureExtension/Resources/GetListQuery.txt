@@ -20,7 +20,7 @@ namespace {ApplicationNamespace}.Features.{PluralEntityName}.Queries.GetList{Ent
             private readonly IMapper _mapper;
             private readonly I{EntityName}Repository _{entityName}Repository;
 
-            public GetListUserProfileQueryHandler(IMapper mapper, I{EntityName}Repository {entityName}Repository)
+            public GetList{EntityName}QueryHandler(IMapper mapper, I{EntityName}Repository {entityName}Repository)
             {
                 _mapper = mapper;
                 _{entityName}Repository = {entityName}Repository;
