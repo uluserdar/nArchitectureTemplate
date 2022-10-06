@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <Extern href="stdidcmd.h"/>
+  <Extern href="vsshlids.h"/>
+  <Include href="KnownImageIds.vsct"/>
+  <Include href="VSGlobals.vsct"/>
+
+  <Commands package="nArchitectureExtension">
+    <Groups>
+      <Group guid="nArchitectureExtension" id="MyMenuGroup" priority="0x0600">
+                <Parent guid="VSMainMenu" id="ItemNode"/>
+      </Group>
+    </Groups>
+
+    <!--This section defines the elements the user can interact with, like a menu command or a button
+        or combo box in a toolbar. -->
+    <Buttons>
+      <Button guid="nArchitectureExtension" id="GenerateCodeFromEntityCommand" priority="0x0200" type="Button">
+                        <Parent guid="nArchitectureExtension" id="MyMenuGroup" />
+        <Icon guid="ImageCatalogGuid" id="GenerateAllFromTemplate" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Generate code from entity</ButtonText>
+          <LocCanonicalName>.nArchitectureExtension.GenerateCodeFromEntityCommand</LocCanonicalName>
+        </Strings>
+      </Button>
+    </Buttons>
+  </Commands>
+
+  <Symbols>
+    <GuidSymbol name="nArchitectureExtension" value="{d2514a69-880b-41e3-9c48-4c0ca5c7e609}">
+      <IDSymbol name="MyMenuGroup" value="0x0001" />
+      <IDSymbol name="GenerateCodeFromEntityCommand" value="0x0200" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>

@@ -1,0 +1,7 @@
+using Core.Persistence.Repositories;
+using {EntityNamespace};
+
+namespace {ApplicationNamespace}.Services.Repositories
+{
+    public interface I{EntityName}Repository : IAsyncRepository<{EntityName}>, IRepository<{EntityName}> { }
+}

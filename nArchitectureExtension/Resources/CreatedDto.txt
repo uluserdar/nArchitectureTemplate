@@ -1,0 +1,7 @@
+﻿namespace {ApplicationNamespace}.Features.{PluralEntityName}.Dtos
+{
+    public class Created{EntityName}Dto
+    {
+        {Properties}
+    }
+}

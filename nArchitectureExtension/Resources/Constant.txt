@@ -1,0 +1,7 @@
+namespace {ApplicationNamespace}.Features.{PluralEntityName}.Constants
+{
+    public static class {EntityName}Messages
+    {
+       
+    }
+}

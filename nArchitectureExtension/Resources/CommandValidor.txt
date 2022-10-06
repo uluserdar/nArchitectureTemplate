@@ -1,0 +1,11 @@
+using FluentValidation;
+
+namespace {ApplicationNamespace}.Features.{PluralEntityName}.Commands.Create{EntityName}
+{
+    public class Create{EntityName}CommandValidator:AbstractValidator<Create{EntityName}Command>
+    {
+        public Create{EntityName}CommandValidator()
+        {
+        }
+    }
+}

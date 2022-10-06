@@ -1,0 +1,11 @@
+using FluentValidation;
+
+namespace {ApplicationNamespace}.Features.{PluralEntityName}.Commands.Delete{EntityName}
+{
+    public class Delete{EntityName}CommandValidator:AbstractValidator<Delete{EntityName}Command>
+    {
+        public Delete{EntityName}CommandValidator()
+        {
+        }
+    }
+}

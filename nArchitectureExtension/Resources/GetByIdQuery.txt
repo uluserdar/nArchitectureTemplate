@@ -1,0 +1,37 @@
+using AutoMapper;
+using Core.Application.Pipelines.Authorization;
+using {ApplicationNamespace}.Features.{PluralEntityName}.Dtos;
+using {ApplicationNamespace}.Services.Repositories;
+using {EntityNamespace};
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+
+namespace {ApplicationNamespace}.Features.{PluralEntityName}.Queries.GetById{EntityName}
+{
+    public class GetById{EntityName}Query:IRequest<{EntityName}Dto>,ISecuredRequest
+    {
+        public int Id { get; set; }
+        public string[] Roles => new[] { nameof(GetById{EntityName}Query) };
+
+        public class GetById{EntityName}QueryHandler : IRequestHandler<GetById{EntityName}Query, {EntityName}Dto>
+        {
+            private readonly IMapper _mapper;
+            private readonly I{EntityName}Repository _{entityName}Repository;
+
+            public GetById{EntityName}QueryHandler(IMapper mapper, I{EntityName}Repository {entityName}Repository)
+            {
+                _mapper = mapper;
+                _{entityName}Repository = {entityName}Repository;
+            }
+
+            public async Task<{EntityName}Dto> Handle(GetById{EntityName}Query request, CancellationToken cancellationToken)
+            {
+                {EntityName} {entityName} = await _{entityName}Repository.GetAsync(predicate: x => x.Id == request.Id);
+
+                {EntityName}Dto {entityName}Dto = _mapper.Map<{EntityName}Dto>({entityName});
+
+                return {entityName}Dto;
+            }
+        }
+    }
+}

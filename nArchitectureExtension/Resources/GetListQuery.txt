@@ -1,0 +1,40 @@
+using AutoMapper;
+using Core.Application.Pipelines.Authorization;
+using Core.Application.Requests;
+using Core.Persistence.Paging;
+using {ApplicationNamespace}.Features.{PluralEntityName}.Models;
+using {ApplicationNamespace}.Services.Repositories;
+using {EntityNamespace};
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+
+namespace {ApplicationNamespace}.Features.{PluralEntityName}.Queries.GetList{EntityName}
+{
+    public class GetList{EntityName}Query:IRequest<{EntityName}ListModel>,ISecuredRequest
+    {
+        public PageRequest PageRequest { get; set; }
+        public string[] Roles => new[] {nameof(GetList{EntityName}Query)}; 
+
+        public class GetList{EntityName}QueryHandler : IRequestHandler<GetList{EntityName}Query, {EntityName}ListModel>
+        {
+            private readonly IMapper _mapper;
+            private readonly I{EntityName}Repository _{entityName}Repository;
+
+            public GetListUserProfileQueryHandler(IMapper mapper, I{EntityName}Repository {entityName}Repository)
+            {
+                _mapper = mapper;
+                _{entityName}Repository = {entityName}Repository;
+            }
+
+            public async Task<{EntityName}ListModel> Handle(GetList{EntityName}Query request, CancellationToken cancellationToken)
+            {
+                IPaginate<{EntityName}> {entityName}List = await _{entityName}Repository.GetListAsync(
+                    index: request.PageRequest.Page, 
+                    size: request.PageRequest.PageSize);
+
+                {EntityName}ListModel {entityName}ListModel = _mapper.Map<{EntityName}ListModel>({entityName}List);
+                return {entityName}ListModel;
+            }
+        }
+    }
+}

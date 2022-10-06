@@ -1,0 +1,7 @@
+namespace {ApplicationNamespace}.Features.{PluralEntityName}.Rules
+{
+    public class {EntityName}BusinessRule
+    {
+       
+    }
+}

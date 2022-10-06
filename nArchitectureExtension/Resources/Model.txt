@@ -1,0 +1,10 @@
+using Core.Persistence.Paging;
+using {ApplicationNamespace}.Features.{PluralEntityName}.Dtos;
+
+namespace {ApplicationNamespace}.Features.{PluralEntityName}.Models
+{
+    public class {EntityName}ListModel:BasePageableModel
+    {
+        public IList<{EntityName}Dto> Items { get; set; }
+    }
+}

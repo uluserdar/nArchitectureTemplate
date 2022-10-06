@@ -1,0 +1,39 @@
+using AutoMapper;
+using Core.Application.Pipelines.Authorization;
+using {ApplicationNamespace}.Features.{PluralEntityName}.Dtos;
+using {ApplicationNamespace}.Features.{PluralEntityName}.Rules;
+using {ApplicationNamespace}.Services.Repositories;
+using {EntityNamespace};
+using MediatR;
+
+namespace {ApplicationNamespace}.Features.{PluralEntityName}.Commands.Delete{EntityName}
+{
+    public class Delete{EntityName}Command:IRequest<Deleted{EntityName}Dto>,ISecuredRequest
+    {
+        {Properties}
+        public string[] Roles => new[] { nameof(Delete{EntityName}Command) };
+
+        public class Delete{EntityName}CommandHandler : IRequestHandler<Delete{EntityName}Command, Deleted{EntityName}Dto>
+        {
+            private readonly IMapper _mapper;
+            private readonly I{EntityName}Repository _{entityName}Repository;
+            private readonly {EntityName}BusinessRule _{entityName}BusinessRule;
+
+            public Delete{EntityName}CommandHandler(IMapper mapper, I{EntityName}Repository {entityName}Repository, {EntityName}BusinessRule {entityName}BusinessRule)
+            {
+                _mapper = mapper;
+                _{entityName}Repository = {entityName}Repository;
+                _{entityName}BusinessRule = {entityName}BusinessRule;
+            }
+
+            public async Task<Deleted{EntityName}Dto> Handle(Delete{EntityName}Command request, CancellationToken cancellationToken)
+            {
+                {EntityName} mapped{EntityName} = _mapper.Map<{EntityName}>(request);
+                {EntityName} deleted{EntityName} =await _{entityName}Repository.DeleteAsync(mapped{EntityName});
+                Deleted{EntityName}Dto deleted{EntityName}Dto = _mapper.Map<Deleted{EntityName}Dto>(deleted{EntityName});
+
+                return deleted{EntityName}Dto;
+            }
+        }
+    }
+}

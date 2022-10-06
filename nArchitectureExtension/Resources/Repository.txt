@@ -1,0 +1,12 @@
+using Core.Persistence.Repositories;
+using {ApplicationNamespace}.Contexts;
+using {ApplicationNamespace}.Services.Repositories;
+using {EntityNamespace};
+
+namespace {PersistenceNamespace}.Repositories
+{
+    public class {EntityName}Repository : EfRepositoryBase<{EntityName}, BaseDbContext>, I{EntityName}Repository
+    {
+        public {EntityName}Repository(BaseDbContext context) : base(context) { }
+    }
+}
