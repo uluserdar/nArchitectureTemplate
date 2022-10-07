@@ -80,6 +80,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ProjectTemplates\nArchitecture.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="Resources\Constant.txt" />
     <None Include="Resources\DeleteCommandTemplate.txt" />
     <None Include="Resources\CommandValidor.txt" />
