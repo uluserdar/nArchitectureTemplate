@@ -15,29 +15,29 @@ namespace nArchitectureExtension.Services.GenerationServices.ValidatorCodeGenera
 
         public void GenerateCreateValidatorCode()
         {
-            TemplateAndPropertyResult result = GetPropertyAndTemplate(Resources.TemplateFiles.CreateCommandValidor);
-            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(result.Placeholders.PluralEntityName)}\\Commands\\Create{result.Placeholders.EntityName}";
-            string filePath = $"{directoryPath}\\Create{result.Placeholders.EntityName}CommandValidator.cs";
+            TemplateResult result = GetPropertyAndTemplate(Resources.TemplateFiles.CreateCommandValidor);
+            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(result.Placeholder.PluralEntityName)}\\Commands\\Create{result.Placeholder.EntityName}";
+            string filePath = $"{directoryPath}\\Create{result.Placeholder.EntityName}CommandValidator.cs";
             FileHelper.FileCreate(directoryPath, filePath, result.Template);
         }
 
         public void GenerateDeleteValidatorCode()
         {
-            TemplateAndPropertyResult result = GetPropertyAndTemplate(Resources.TemplateFiles.DeleteCommandValidator);
-            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(result.Placeholders.PluralEntityName)}\\Commands\\Delete{result.Placeholders.EntityName}";
-            string filePath = $"{directoryPath}\\Delete{result.Placeholders.EntityName}CommandValidator.cs";
+            TemplateResult result = GetPropertyAndTemplate(Resources.TemplateFiles.DeleteCommandValidator);
+            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(result.Placeholder.PluralEntityName)}\\Commands\\Delete{result.Placeholder.EntityName}";
+            string filePath = $"{directoryPath}\\Delete{result.Placeholder.EntityName}CommandValidator.cs";
             FileHelper.FileCreate(directoryPath, filePath, result.Template);
         }
 
         public void GenerateUpdateValidatorCode()
         {
-            TemplateAndPropertyResult result = GetPropertyAndTemplate(Resources.TemplateFiles.UpdateCommandValidator);
-            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(result.Placeholders.PluralEntityName)}\\Commands\\Update{result.Placeholders.EntityName}";
-            string filePath = $"{directoryPath}\\Update{result.Placeholders.EntityName}CommandValidator.cs";
+            TemplateResult result = GetPropertyAndTemplate(Resources.TemplateFiles.UpdateCommandValidator);
+            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(result.Placeholder.PluralEntityName)}\\Commands\\Update{result.Placeholder.EntityName}";
+            string filePath = $"{directoryPath}\\Update{result.Placeholder.EntityName}CommandValidator.cs";
             FileHelper.FileCreate(directoryPath, filePath, result.Template);
         }
 
-        private TemplateAndPropertyResult GetPropertyAndTemplate(string template, bool generateProperties = false)
+        private TemplateResult GetPropertyAndTemplate(string template, bool generateProperties = false)
         {
             PlaceholderModel replacePropertyModel = _replacePropertyModelGenerator.PlaceholderModelBuilder(
                 new()
@@ -49,7 +49,7 @@ namespace nArchitectureExtension.Services.GenerationServices.ValidatorCodeGenera
                 generateProperties: generateProperties);
 
             string text = PlaceholderHelper.ReplacePlaceholders(replacePropertyModel, template);
-            return new() { Placeholders = replacePropertyModel, Template = text };
+            return new() { Placeholder = replacePropertyModel, Template = text };
         }
     }
 }

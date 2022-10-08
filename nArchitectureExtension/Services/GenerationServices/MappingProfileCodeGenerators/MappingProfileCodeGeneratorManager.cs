@@ -15,13 +15,13 @@ namespace nArchitectureExtension.Services.GenerationServices.MappingProfileCodeG
 
         public void GenerateMappingProfileCode()
         {
-            TemplateAndPropertyResult result = GetPropertyAndTemplate(Resources.TemplateFiles.MappingProfile);
-            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(result.Placeholders.PluralEntityName)}\\Profiles";
+            TemplateResult result = GetPropertyAndTemplate(Resources.TemplateFiles.MappingProfile);
+            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(result.Placeholder.PluralEntityName)}\\Profiles";
             string filePath = $"{directoryPath}\\MappingProfile.cs";
             FileHelper.FileCreate(directoryPath, filePath, result.Template);
         }
 
-        private TemplateAndPropertyResult GetPropertyAndTemplate(string template, bool generateProperties = false)
+        private TemplateResult GetPropertyAndTemplate(string template, bool generateProperties = false)
         {
             PlaceholderModel replacePropertyModel = _replacePropertyModelGenerator.PlaceholderModelBuilder(
                 new()
@@ -34,7 +34,7 @@ namespace nArchitectureExtension.Services.GenerationServices.MappingProfileCodeG
                 generateProperties: generateProperties);
 
             string text = PlaceholderHelper.ReplacePlaceholders(replacePropertyModel, template);
-            return new() { Placeholders = replacePropertyModel, Template = text };
+            return new() { Placeholder = replacePropertyModel, Template = text };
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace nArchitectureExtension.Models
 {
-    public class TemplateAndPropertyResult
+    public class TemplateResult
     {
-        public PlaceholderModel Placeholders { get; set; }
+        public PlaceholderModel Placeholder { get; set; }
         public string Template { get; set; }
     }
 }

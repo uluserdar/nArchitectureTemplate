@@ -15,13 +15,13 @@ namespace nArchitectureExtension.Services.GenerationServices.ConstantCodeGenerat
 
         public void GenerateConstantCode()
         {
-            TemplateAndPropertyResult result = GetPropertyAndTemplate(false, Resources.TemplateFiles.Constant);
-            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(result.Placeholders.PluralEntityName)}\\Constants";
-            string filePath = $"{directoryPath}\\{result.Placeholders.EntityName}Messages.cs";
+            TemplateResult result = GetPropertyAndTemplate(false, Resources.TemplateFiles.Constant);
+            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(result.Placeholder.PluralEntityName)}\\Constants";
+            string filePath = $"{directoryPath}\\{result.Placeholder.EntityName}Messages.cs";
             FileHelper.FileCreate(directoryPath, filePath, result.Template);
         }
 
-        private TemplateAndPropertyResult GetPropertyAndTemplate(bool generateProperties,string template)
+        private TemplateResult GetPropertyAndTemplate(bool generateProperties,string template)
         {
             PlaceholderModel replacePropertyModel = _replacePropertyModelGenerator.PlaceholderModelBuilder(
                 new()
@@ -33,7 +33,7 @@ namespace nArchitectureExtension.Services.GenerationServices.ConstantCodeGenerat
                 generateProperties: generateProperties);
 
             string text = PlaceholderHelper.ReplacePlaceholders(replacePropertyModel, template);
-            return new() { Placeholders = replacePropertyModel, Template = text };
+            return new() { Placeholder = replacePropertyModel, Template = text };
         }
     }
 }

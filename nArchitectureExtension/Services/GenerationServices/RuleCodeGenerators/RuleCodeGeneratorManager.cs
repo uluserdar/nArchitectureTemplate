@@ -15,13 +15,13 @@ namespace nArchitectureExtension.Services.GenerationServices.RuleCodeGenerators
 
         public void GenerateRuleCode()
         {
-            TemplateAndPropertyResult result = GetPropertyAndTemplate(Resources.TemplateFiles.Rule);
-            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(result.Placeholders.PluralEntityName)}\\Rules";
-            string filePath = $"{directoryPath}\\{result.Placeholders.EntityName}BusinessRule.cs";
+            TemplateResult result = GetPropertyAndTemplate(Resources.TemplateFiles.Rule);
+            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(result.Placeholder.PluralEntityName)}\\Rules";
+            string filePath = $"{directoryPath}\\{result.Placeholder.EntityName}BusinessRule.cs";
             FileHelper.FileCreate(directoryPath, filePath, result.Template);
         }
 
-        private TemplateAndPropertyResult GetPropertyAndTemplate(string template, bool generateProperties = false)
+        private TemplateResult GetPropertyAndTemplate(string template, bool generateProperties = false)
         {
             PlaceholderModel replacePropertyModel = _replacePropertyModelGenerator.PlaceholderModelBuilder(
                 new()
@@ -33,7 +33,7 @@ namespace nArchitectureExtension.Services.GenerationServices.RuleCodeGenerators
                 generateProperties: generateProperties);
 
             string text = PlaceholderHelper.ReplacePlaceholders(replacePropertyModel, template);
-            return new() { Placeholders = replacePropertyModel, Template = text };
+            return new() { Placeholder = replacePropertyModel, Template = text };
         }
     }
 }

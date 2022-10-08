@@ -52,7 +52,7 @@
     <Compile Include="Helpers\PlaceholderHelpers\PlaceholderModelGenerator.cs" />
     <Compile Include="Helpers\PlaceholderHelpers\PlaceholderHelper.cs" />
     <Compile Include="Models\PlaceholderModel.cs" />
-    <Compile Include="Models\TemplateAndPropertyResult.cs" />
+    <Compile Include="Models\TemplateResult.cs" />
     <Compile Include="Services\GenerationServices\CommandCodeGenerators\CommandCodeGeneratorManager.cs" />
     <Compile Include="Services\GenerationServices\CommandCodeGenerators\ICommandCodeGeneratorService.cs" />
     <Compile Include="Services\GenerationServices\ConstantCodeGenerators\ConstantCodeGeneratorManager.cs" />

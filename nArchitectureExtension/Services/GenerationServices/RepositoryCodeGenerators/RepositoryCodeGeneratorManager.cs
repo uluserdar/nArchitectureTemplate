@@ -15,21 +15,21 @@ namespace nArchitectureExtension.Services.GenerationServices.RepositoryCodeGener
 
         public void GenerateInterfaceRepositoryCode()
         {
-            TemplateAndPropertyResult result = GetPropertyAndTemplate(Resources.TemplateFiles.InterfaceRepository, getPersistenceNameSpace: false);
+            TemplateResult result = GetPropertyAndTemplate(Resources.TemplateFiles.InterfaceRepository, getPersistenceNameSpace: false);
             string directoryPath = $"{PathHelper.GetApplicationRepositoriesDirectoryPath()}";
-            string filePath = $"{directoryPath}\\I{result.Placeholders.EntityName}Repository.cs";
+            string filePath = $"{directoryPath}\\I{result.Placeholder.EntityName}Repository.cs";
             FileHelper.FileCreate(directoryPath, filePath, result.Template);
         }
 
         public void GenerateRepositoryCode()
         {
-            TemplateAndPropertyResult result = GetPropertyAndTemplate(Resources.TemplateFiles.Repository, getPersistenceNameSpace: true, generateProperties: false);
+            TemplateResult result = GetPropertyAndTemplate(Resources.TemplateFiles.Repository, getPersistenceNameSpace: true, generateProperties: false);
             string directoryPath = $"{PathHelper.GetPersistenceRepositoriesDirectoryPath()}";
-            string filePath = $"{directoryPath}\\{result.Placeholders.EntityName}Repository.cs";
+            string filePath = $"{directoryPath}\\{result.Placeholder.EntityName}Repository.cs";
             FileHelper.FileCreate(directoryPath, filePath, result.Template);
         }
 
-        private TemplateAndPropertyResult GetPropertyAndTemplate(string template, bool getPersistenceNameSpace, bool generateProperties = false)
+        private TemplateResult GetPropertyAndTemplate(string template, bool getPersistenceNameSpace, bool generateProperties = false)
         {
             PlaceholderModel replacePropertyModel = _replacePropertyModelGenerator.PlaceholderModelBuilder(
                 new()
@@ -42,7 +42,7 @@ namespace nArchitectureExtension.Services.GenerationServices.RepositoryCodeGener
                 generateProperties: generateProperties);
 
             string text = PlaceholderHelper.ReplacePlaceholders(replacePropertyModel, template);
-            return new() { Placeholders = replacePropertyModel, Template = text };
+            return new() { Placeholder = replacePropertyModel, Template = text };
         }
     }
 }
