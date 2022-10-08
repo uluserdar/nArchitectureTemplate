@@ -1,17 +1,16 @@
 ﻿using EnvDTE;
 using EnvDTE80;
+using nArchitectureExtension.Helpers;
 using nArchitectureExtension.Models;
 using nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Constants;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using Project = EnvDTE.Project;
 
-namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Extensions
+namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpers
 {
-    public static class DteExtension
+    public static class EnvDteHelper
     {
-
         public static ClassModel GetSelectedClassModel(this DTE2 dte)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -21,10 +20,8 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Exten
             CodeNamespace codeNamespace = GetCodeNamespace(fileCodeModel);
             CodeClass codeClass = GetCodeClass(codeNamespace);
 
-
-
             ClassModel result = new ClassModel();
-            result.Name = FileNameWithoutExtension(projectItem.Properties.Item(DteProjectVaraibles.FullPath).Value.ToString());
+            result.Name = PathHelper.GetFileNameWithoutExtension(projectItem.Properties.Item(DteProjectVaraibles.FullPath).Value.ToString());
             result.CustomToolNamespace = projectItem.Properties.Item(DteProjectVaraibles.CustomToolNamespace).Value.ToString();
             result.LocalPath = projectItem.Properties.Item(DteProjectVaraibles.LocalPath).Value.ToString();
             result.FullPath = projectItem.Properties.Item(DteProjectVaraibles.FullPath).Value.ToString();
@@ -33,10 +30,8 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Exten
             result.Extension = projectItem.Properties.Item(DteProjectVaraibles.Extension).Value.ToString();
             result.Namespace = codeNamespace.Name;
 
-
             SetBaseClassList(codeClass, result.BaseClassList);
             SetProperties(codeClass, result.Properties);
-
 
             return result;
         }
@@ -79,7 +74,6 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Exten
             List<string> directoryList = project.FullName.Split('\\').ToList();
             directoryList.RemoveAt(directoryList.Count - 1);
             string directoryPath = string.Join("\\", directoryList);
-
 
             ProjectModel result = new ProjectModel
             {
@@ -231,11 +225,5 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Exten
                 SetProperties(item as CodeClass, list);
             }
         }
-
-        private static string FileNameWithoutExtension(string path)
-        {
-            return Path.GetFileNameWithoutExtension(path);
-        }
-
     }
 }

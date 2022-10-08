@@ -29,5 +29,10 @@ namespace nArchitectureExtension.Helpers
             var result = $"{Path.GetDirectoryName(applicationProjectModel.FullPath)}\\Services\\Repositories";
             return result;
         }
+
+        public static string GetFileNameWithoutExtension(string path)
+        {
+            return Path.GetFileNameWithoutExtension(path);
+        }
     }
 }

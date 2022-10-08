@@ -74,7 +74,7 @@
     <Compile Include="Services\ProjectServices\EnvDteTechnology\Constants\DteSolutionVariables.cs" />
     <Compile Include="Constants\Messages.cs" />
     <Compile Include="ServiceRegistration.cs" />
-    <Compile Include="Services\ProjectServices\EnvDteTechnology\Extensions\DteExtension.cs" />
+    <Compile Include="Services\ProjectServices\EnvDteTechnology\Helpers\EnvDteHelper.cs" />
     <Compile Include="Models\ClassModel.cs" />
     <Compile Include="Models\ProjectModel.cs" />
     <Compile Include="Models\PropertyModel.cs" />
