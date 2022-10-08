@@ -24,7 +24,7 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Exten
 
 
             ClassModel result = new ClassModel();
-            result.Name =FileNameWithoutExtension(projectItem.Properties.Item(DteProjectVaraibles.FullPath).Value.ToString());
+            result.Name = FileNameWithoutExtension(projectItem.Properties.Item(DteProjectVaraibles.FullPath).Value.ToString());
             result.CustomToolNamespace = projectItem.Properties.Item(DteProjectVaraibles.CustomToolNamespace).Value.ToString();
             result.LocalPath = projectItem.Properties.Item(DteProjectVaraibles.LocalPath).Value.ToString();
             result.FullPath = projectItem.Properties.Item(DteProjectVaraibles.FullPath).Value.ToString();
@@ -33,11 +33,11 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Exten
             result.Extension = projectItem.Properties.Item(DteProjectVaraibles.Extension).Value.ToString();
             result.Namespace = codeNamespace.Name;
 
-          
+
             SetBaseClassList(codeClass, result.BaseClassList);
             SetProperties(codeClass, result.Properties);
 
-            
+
             return result;
         }
 
@@ -68,11 +68,11 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Exten
             return result;
         }
 
-        public static ProjectModel GetProjectModelFromName(this DTE2 dte,string name)
+        public static ProjectModel GetProjectModelFromName(this DTE2 dte, string name)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             IEnumerable<Project> projects = dte.Solution.Projects.Cast<Project>();
-            Project project = GetProjectFromName(projects,name);
+            Project project = GetProjectFromName(projects, name);
             CodeModel codeModel = project.CodeModel as CodeModel;
             CodeNamespace codeNamespace = GetCodeProjectNamespace(codeModel);
 
@@ -136,7 +136,7 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Exten
             ProjectItem result = null;
             foreach (SelectedItem item in dte.SelectedItems)
             {
-                if(item.ProjectItem!=null) result = item.ProjectItem;
+                if (item.ProjectItem != null) result = item.ProjectItem;
             }
 
             return result;
@@ -159,7 +159,7 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Exten
 
             foreach (CodeClass codeClass in codeNamespace.Members)
             {
-                if (codeClass.Kind == vsCMElement.vsCMElementClass) result=(CodeClass)codeClass;
+                if (codeClass.Kind == vsCMElement.vsCMElementClass) result = (CodeClass)codeClass;
             }
             return result;
         }
@@ -167,13 +167,13 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Exten
         private static CodeNamespace GetCodeNamespace(FileCodeModel fileCodeModel)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            if (fileCodeModel == null) return null;  
+            if (fileCodeModel == null) return null;
 
             CodeNamespace result = null;
 
             foreach (CodeElement item in fileCodeModel.CodeElements)
             {
-                if(item.Kind==vsCMElement.vsCMElementNamespace)
+                if (item.Kind == vsCMElement.vsCMElementNamespace)
                 {
                     result = (CodeNamespace)item;
                 }
@@ -198,7 +198,7 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Exten
         private static void SetBaseClassList(CodeClass codeClass, List<ClassModel> list)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            if(codeClass == null) return;
+            if (codeClass == null) return;
 
             foreach (var item in codeClass.Bases)
             {
@@ -209,7 +209,7 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Exten
         private static void SetProperties(CodeClass codeClass, List<PropertyModel> list)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            if(codeClass ==null) return;
+            if (codeClass == null) return;
 
             foreach (var item in codeClass.Members)
             {

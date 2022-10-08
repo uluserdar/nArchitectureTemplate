@@ -17,7 +17,7 @@ namespace nArchitectureExtension
     [Guid(PackageGuids.nArchitectureExtensionString)]
     public sealed class nArchitectureExtensionPackage : AsyncPackage
     {
-      
+
         public static DTE2 _dte;
         public static IServiceCollection Services;
         protected async override Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)

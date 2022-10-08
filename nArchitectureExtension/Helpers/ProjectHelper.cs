@@ -1,5 +1,4 @@
-﻿using EnvDTE;
-using System.Data.Entity.Design.PluralizationServices;
+﻿using System.Data.Entity.Design.PluralizationServices;
 using System.Globalization;
 
 namespace nArchitectureExtension.Helpers
