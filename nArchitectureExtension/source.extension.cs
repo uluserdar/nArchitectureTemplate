@@ -8,10 +8,10 @@ namespace nArchitectureExtension
     internal sealed partial class Vsix
     {
         public const string Id = "nArchitectureExtension.b451418e-cf7f-406a-bbf2-e8caa0f513e2";
-        public const string Name = "nArchitectureExtension";
-        public const string Description = @"Empty VSIX Project.";
+        public const string Name = "nArchitecture Extension";
+        public const string Description = @"nArchitecture Project TemplatenArchitecture Project Template";
         public const string Language = "en-US";
-        public const string Version = "1.0";
+        public const string Version = "1.1";
         public const string Author = "serdar";
         public const string Tags = "";
     }
