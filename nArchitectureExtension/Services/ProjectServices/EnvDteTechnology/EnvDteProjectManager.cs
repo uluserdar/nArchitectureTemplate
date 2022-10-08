@@ -1,6 +1,6 @@
 ﻿using EnvDTE80;
 using nArchitectureExtension.Models;
-using nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Extensions;
+using nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpers;
 
 namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology
 {
