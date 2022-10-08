@@ -47,8 +47,29 @@
   <ItemGroup>
     <Compile Include="Commands\GenerateCodeFromEntityCommand.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
+    <Compile Include="Helpers\PathHelper.cs" />
     <Compile Include="Helpers\ProjectHelper.cs" />
-    <Compile Include="Services\GenerationServices\TemplateFileTechnology\Constants\PlaceHolderConstants.cs" />
+    <Compile Include="Helpers\PropertyReplaceHelpers\ReplacePropertyModelGenerator.cs" />
+    <Compile Include="Helpers\PropertyReplaceHelpers\ReplacePropertyHelper.cs" />
+    <Compile Include="Models\ReplacePropertyModel.cs" />
+    <Compile Include="Models\TemplateAndPropertyResult.cs" />
+    <Compile Include="Services\GenerationServices\CommandCodeGenerators\CommandCodeGeneratorManager.cs" />
+    <Compile Include="Services\GenerationServices\CommandCodeGenerators\ICommandCodeGeneratorService.cs" />
+    <Compile Include="Services\GenerationServices\ConstantCodeGenerators\ConstantCodeGeneratorManager.cs" />
+    <Compile Include="Services\GenerationServices\ConstantCodeGenerators\IConstantCodeGeneratorService.cs" />
+    <Compile Include="Services\GenerationServices\DtoCodeGenerators\DtoCodeGeneratorManager.cs" />
+    <Compile Include="Services\GenerationServices\DtoCodeGenerators\IDtoCodeGeneratorService.cs" />
+    <Compile Include="Services\GenerationServices\MappingProfileCodeGenerators\IMappingProfileCodeGeneratorService.cs" />
+    <Compile Include="Services\GenerationServices\MappingProfileCodeGenerators\MappingProfileCodeGeneratorManager.cs" />
+    <Compile Include="Services\GenerationServices\QueryCodeGenerators\IQueryCodeGeneratorService.cs" />
+    <Compile Include="Services\GenerationServices\QueryCodeGenerators\QueryCodeGeneratorManager.cs" />
+    <Compile Include="Services\GenerationServices\RepositoryCodeGenerators\IRepositoryCodeGeneratorService.cs" />
+    <Compile Include="Services\GenerationServices\RepositoryCodeGenerators\RepositoryCodeGeneratorManager.cs" />
+    <Compile Include="Services\GenerationServices\RuleCodeGenerators\IRuleCodeGeneratorService.cs" />
+    <Compile Include="Services\GenerationServices\RuleCodeGenerators\RuleCodeGeneratorManager.cs" />
+    <Compile Include="Services\GenerationServices\Constants\PlaceHolderConstants.cs" />
+    <Compile Include="Services\GenerationServices\ValidatorCodeGenerators\IValidatorCodeGeneratorService.cs" />
+    <Compile Include="Services\GenerationServices\ValidatorCodeGenerators\ValidatorCodeGeneratorManager.cs" />
     <Compile Include="Services\ProjectServices\EnvDteTechnology\Constants\DteProjectVaraibles.cs" />
     <Compile Include="Services\ProjectServices\EnvDteTechnology\Constants\DteSolutionVariables.cs" />
     <Compile Include="Constants\Messages.cs" />
@@ -65,8 +86,6 @@
       <DependentUpon>TemplateFiles.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\ProjectServices\EnvDteTechnology\EnvDteProjectManager.cs" />
-    <Compile Include="Services\GenerationServices\TemplateFileTechnology\CreateGeneratorManager.cs" />
-    <Compile Include="Services\GenerationServices\IGenerationService.cs" />
     <Compile Include="Services\ProjectServices\IProjectService.cs" />
     <Compile Include="source.extension.cs">
       <AutoGen>True</AutoGen>

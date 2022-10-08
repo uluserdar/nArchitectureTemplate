@@ -1,8 +1,15 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using nArchitectureExtension.Services;
-using nArchitectureExtension.Services.ProjectServices.EnvDteTechnology;
+using nArchitectureExtension.Helpers.ReplaceProperty;
+using nArchitectureExtension.Services.GenerationServices.CommandCodeGenerators;
+using nArchitectureExtension.Services.GenerationServices.ConstantCodeGenerators;
+using nArchitectureExtension.Services.GenerationServices.DtoCodeGenerators;
+using nArchitectureExtension.Services.GenerationServices.MappingProfileCodeGenerators;
+using nArchitectureExtension.Services.GenerationServices.QueryCodeGenerators;
+using nArchitectureExtension.Services.GenerationServices.RepositoryCodeGenerators;
+using nArchitectureExtension.Services.GenerationServices.RuleCodeGenerators;
+using nArchitectureExtension.Services.GenerationServices.ValidatorCodeGenerators;
 using nArchitectureExtension.Services.ProjectServices;
-using nArchitectureExtension.Services.GenerationServices.TemplateFileTechnology;
+using nArchitectureExtension.Services.ProjectServices.EnvDteTechnology;
 
 namespace nArchitectureExtension
 {
@@ -11,7 +18,15 @@ namespace nArchitectureExtension
         public static void AddServices(this IServiceCollection services)
         {
             services.AddScoped<IProjectService, EnvDteProjectManager>();
-            services.AddScoped<IGenerationService, GenerationManager>();
+            services.AddScoped<ICommandCodeGeneratorService, CommandCodeGeneratorManager>();
+            services.AddScoped<IQueryCodeGeneratorService, QueryCodeGeneratorManager>();
+            services.AddScoped<IConstantCodeGeneratorService, ConstantCodeGeneratorManager>();
+            services.AddScoped<IDtoCodeGeneratorService, DtoCodeGeneratorManager>();
+            services.AddScoped<IMappingProfileCodeGeneratorService, MappingProfileCodeGeneratorManager>();
+            services.AddScoped<IRepositoryCodeGeneratorService, RepositoryCodeGeneratorManager>();
+            services.AddScoped<IRuleCodeGeneratorService, RuleCodeGeneratorManager>();
+            services.AddScoped<IValidatorCodeGeneratorService, ValidatorCodeGeneratorManager>();
+            services.AddScoped<ReplacePropertyModelGenerator>();
         }
     }
 }
