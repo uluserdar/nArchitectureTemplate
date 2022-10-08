@@ -1,6 +1,6 @@
 ﻿namespace nArchitectureExtension.Models
 {
-    public class ReplacePropertyModel
+    public class PlaceholderModel
     {
         public string ApplicationNamespace { get; set; }
         public string PersistenceNamespace { get; set; }
@@ -11,7 +11,7 @@
         public string Properties { get; set; }
     }
 
-    public struct ReplacePropertyModelSelector
+    public struct PlaceholderSelector
     {
         public bool GetApplicationNamespace { get; set; }
         public bool GetEntityNamespace { get; set; }

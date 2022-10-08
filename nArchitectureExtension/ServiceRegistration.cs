@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using nArchitectureExtension.Helpers.ReplaceProperty;
+using nArchitectureExtension.Helpers.PlaceholderHelper;
 using nArchitectureExtension.Services.GenerationServices.CommandCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.ConstantCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.DtoCodeGenerators;
@@ -26,7 +26,7 @@ namespace nArchitectureExtension
             services.AddScoped<IRepositoryCodeGeneratorService, RepositoryCodeGeneratorManager>();
             services.AddScoped<IRuleCodeGeneratorService, RuleCodeGeneratorManager>();
             services.AddScoped<IValidatorCodeGeneratorService, ValidatorCodeGeneratorManager>();
-            services.AddScoped<ReplacePropertyModelGenerator>();
+            services.AddScoped<PlaceholderModelGenerator>();
         }
     }
 }

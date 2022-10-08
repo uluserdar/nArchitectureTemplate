@@ -1,14 +1,14 @@
 ﻿using nArchitectureExtension.Helpers;
-using nArchitectureExtension.Helpers.ReplaceProperty;
+using nArchitectureExtension.Helpers.PlaceholderHelper;
 using nArchitectureExtension.Models;
 
 namespace nArchitectureExtension.Services.GenerationServices.CommandCodeGenerators
 {
     public class CommandCodeGeneratorManager : ICommandCodeGeneratorService
     {
-        private readonly ReplacePropertyModelGenerator _replacePropertyModelGenerator;
+        private readonly PlaceholderModelGenerator _replacePropertyModelGenerator;
 
-        public CommandCodeGeneratorManager(ReplacePropertyModelGenerator replacePropertyModelGenerator)
+        public CommandCodeGeneratorManager(PlaceholderModelGenerator replacePropertyModelGenerator)
         {
             _replacePropertyModelGenerator = replacePropertyModelGenerator;
         }
@@ -16,30 +16,30 @@ namespace nArchitectureExtension.Services.GenerationServices.CommandCodeGenerato
         public void GenerateCreateCommandCode()
         {
             TemplateAndPropertyResult propertyAndTemplate = GetPropertyAndTemplate(Resources.TemplateFiles.CreateCommandTemplate);
-            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(propertyAndTemplate.Properties.PluralEntityName)}\\Commands\\Create{propertyAndTemplate.Properties.EntityName}";
-            string filePath = $"{directoryPath}\\Create{propertyAndTemplate.Properties.EntityName}Command.cs";
+            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(propertyAndTemplate.Placeholders.PluralEntityName)}\\Commands\\Create{propertyAndTemplate.Placeholders.EntityName}";
+            string filePath = $"{directoryPath}\\Create{propertyAndTemplate.Placeholders.EntityName}Command.cs";
             FileHelper.FileCreate(directoryPath, filePath, propertyAndTemplate.Template);
         }
 
         public void GenerateDeleteCommandCode()
         {
             TemplateAndPropertyResult propertyAndTemplate = GetPropertyAndTemplate(Resources.TemplateFiles.DeleteCommandTemplate);
-            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(propertyAndTemplate.Properties.PluralEntityName)}\\Commands\\Delete{propertyAndTemplate.Properties.EntityName}";
-            string filePath = $"{directoryPath}\\Delete{propertyAndTemplate.Properties.EntityName}Command.cs";
+            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(propertyAndTemplate.Placeholders.PluralEntityName)}\\Commands\\Delete{propertyAndTemplate.Placeholders.EntityName}";
+            string filePath = $"{directoryPath}\\Delete{propertyAndTemplate.Placeholders.EntityName}Command.cs";
             FileHelper.FileCreate(directoryPath, filePath, propertyAndTemplate.Template);
         }
 
         public void GenerateUpdateCommandCode()
         {
             TemplateAndPropertyResult propertyAndTemplate = GetPropertyAndTemplate(Resources.TemplateFiles.UpdateCommandTemplate);
-            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(propertyAndTemplate.Properties.PluralEntityName)}\\Commands\\Update{propertyAndTemplate.Properties.EntityName}";
-            string filePath = $"{directoryPath}\\Update{propertyAndTemplate.Properties.EntityName}Command.cs";
+            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(propertyAndTemplate.Placeholders.PluralEntityName)}\\Commands\\Update{propertyAndTemplate.Placeholders.EntityName}";
+            string filePath = $"{directoryPath}\\Update{propertyAndTemplate.Placeholders.EntityName}Command.cs";
             FileHelper.FileCreate(directoryPath, filePath, propertyAndTemplate.Template);
         }
 
         private TemplateAndPropertyResult GetPropertyAndTemplate(string template)
         {
-            ReplacePropertyModel replacePropertyModel = _replacePropertyModelGenerator.ReplacePropertyModelBuilder(
+            PlaceholderModel replacePropertyModel = _replacePropertyModelGenerator.PlaceholderModelBuilder(
                 new()
                 {
                     GetApplicationNamespace = true,
@@ -50,8 +50,8 @@ namespace nArchitectureExtension.Services.GenerationServices.CommandCodeGenerato
                     GetProperties = true
                 });
 
-            string text = ReplacePropertyHelper.ReplaceProperties(replacePropertyModel, template);
-            return new() { Properties = replacePropertyModel, Template = text };
+            string text = PlaceholderHelper.ReplacePlaceholders(replacePropertyModel, template);
+            return new() { Placeholders = replacePropertyModel, Template = text };
         }
     }
 }

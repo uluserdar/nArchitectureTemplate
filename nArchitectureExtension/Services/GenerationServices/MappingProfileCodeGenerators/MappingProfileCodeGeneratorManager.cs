@@ -1,14 +1,14 @@
 ﻿using nArchitectureExtension.Helpers;
-using nArchitectureExtension.Helpers.ReplaceProperty;
+using nArchitectureExtension.Helpers.PlaceholderHelper;
 using nArchitectureExtension.Models;
 
 namespace nArchitectureExtension.Services.GenerationServices.MappingProfileCodeGenerators
 {
     public class MappingProfileCodeGeneratorManager : IMappingProfileCodeGeneratorService
     {
-        private readonly ReplacePropertyModelGenerator _replacePropertyModelGenerator;
+        private readonly PlaceholderModelGenerator _replacePropertyModelGenerator;
 
-        public MappingProfileCodeGeneratorManager(ReplacePropertyModelGenerator replacePropertyModelGenerator)
+        public MappingProfileCodeGeneratorManager(PlaceholderModelGenerator replacePropertyModelGenerator)
         {
             _replacePropertyModelGenerator = replacePropertyModelGenerator;
         }
@@ -16,14 +16,14 @@ namespace nArchitectureExtension.Services.GenerationServices.MappingProfileCodeG
         public void GenerateMappingProfileCode()
         {
             TemplateAndPropertyResult result = GetPropertyAndTemplate(Resources.TemplateFiles.MappingProfile);
-            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(result.Properties.PluralEntityName)}\\Profiles";
+            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(result.Placeholders.PluralEntityName)}\\Profiles";
             string filePath = $"{directoryPath}\\MappingProfile.cs";
             FileHelper.FileCreate(directoryPath, filePath, result.Template);
         }
 
         private TemplateAndPropertyResult GetPropertyAndTemplate(string template, bool generateProperties = false)
         {
-            ReplacePropertyModel replacePropertyModel = _replacePropertyModelGenerator.ReplacePropertyModelBuilder(
+            PlaceholderModel replacePropertyModel = _replacePropertyModelGenerator.PlaceholderModelBuilder(
                 new()
                 {
                     GetApplicationNamespace = true,
@@ -33,8 +33,8 @@ namespace nArchitectureExtension.Services.GenerationServices.MappingProfileCodeG
                 },
                 generateProperties: generateProperties);
 
-            string text = ReplacePropertyHelper.ReplaceProperties(replacePropertyModel, template);
-            return new() { Properties = replacePropertyModel, Template = text };
+            string text = PlaceholderHelper.ReplacePlaceholders(replacePropertyModel, template);
+            return new() { Placeholders = replacePropertyModel, Template = text };
         }
     }
 }

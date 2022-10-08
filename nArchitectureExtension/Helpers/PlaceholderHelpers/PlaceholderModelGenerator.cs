@@ -2,36 +2,36 @@
 using nArchitectureExtension.Services.ProjectServices;
 using System.Text;
 
-namespace nArchitectureExtension.Helpers.ReplaceProperty
+namespace nArchitectureExtension.Helpers.PlaceholderHelper
 {
-    public class ReplacePropertyModelGenerator
+    public class PlaceholderModelGenerator
     {
         protected readonly ProjectModel _applicationProjectModel;
         private readonly ProjectModel _persistenceProjectModel;
         private readonly IProjectService _projectService;
 
-        public ReplacePropertyModelGenerator(IProjectService projectService)
+        public PlaceholderModelGenerator(IProjectService projectService)
         {
             _projectService = projectService;
             _applicationProjectModel = _projectService.GetProjectFromName("Application");
             _persistenceProjectModel = _projectService.GetProjectFromName("Persistence");
         }
 
-        public ReplacePropertyModel ReplacePropertyModelBuilder(ReplacePropertyModelSelector replacePropertyModelSelector, bool generateProperties = true)
+        public PlaceholderModel PlaceholderModelBuilder(PlaceholderSelector placeholderModelSelector, bool generateProperties = true)
         {
             var propertyBuilder = PropertyBuilder(generateProperties);
-            var replacePropertyModel = new ReplacePropertyModel
+            var placeholderModel = new PlaceholderModel
             {
-                ApplicationNamespace = replacePropertyModelSelector.GetApplicationNamespace ? _applicationProjectModel.Name : null,
-                PersistenceNamespace = replacePropertyModelSelector.GetPersistenceNamespace ? _persistenceProjectModel.Name : null,
-                EntityNamespace = replacePropertyModelSelector.GetEntityNamespace ? propertyBuilder.ClassModel.Namespace : null,
-                EntityName = replacePropertyModelSelector.GetEntityName ? propertyBuilder.ClassModel.Name : null,
-                PluralEntityName = replacePropertyModelSelector.GetPluralEntityName ? ProjectHelper.Pluralize(propertyBuilder.ClassModel.Name) : null,
-                CamelCaseEntityName = replacePropertyModelSelector.GetCamelCaseEntityName ? ProjectHelper.CamelCase(propertyBuilder.ClassModel.Name) : null,
-                Properties = replacePropertyModelSelector.GetProperties ? propertyBuilder.Properties.ToString() : null,
+                ApplicationNamespace = placeholderModelSelector.GetApplicationNamespace ? _applicationProjectModel.Name : null,
+                PersistenceNamespace = placeholderModelSelector.GetPersistenceNamespace ? _persistenceProjectModel.Name : null,
+                EntityNamespace = placeholderModelSelector.GetEntityNamespace ? propertyBuilder.ClassModel.Namespace : null,
+                EntityName = placeholderModelSelector.GetEntityName ? propertyBuilder.ClassModel.Name : null,
+                PluralEntityName = placeholderModelSelector.GetPluralEntityName ? ProjectHelper.Pluralize(propertyBuilder.ClassModel.Name) : null,
+                CamelCaseEntityName = placeholderModelSelector.GetCamelCaseEntityName ? ProjectHelper.CamelCase(propertyBuilder.ClassModel.Name) : null,
+                Properties = placeholderModelSelector.GetProperties ? propertyBuilder.Properties.ToString() : null,
             };
 
-            return replacePropertyModel;
+            return placeholderModel;
         }
 
         public (string Properties, ClassModel ClassModel) PropertyBuilder(bool generateProperties = true)

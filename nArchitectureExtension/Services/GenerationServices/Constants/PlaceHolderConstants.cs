@@ -1,6 +1,6 @@
 ﻿namespace nArchitectureExtension.Services.GenerationServices.Constants
 {
-    public static class PlaceHolderConstants
+    public static class PlaceholderConstants
     {
         public static string ApplicationNamespace => "{ApplicationNamespace}";
         public static string EntityName => "{EntityName}";

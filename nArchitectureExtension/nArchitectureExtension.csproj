@@ -49,9 +49,9 @@
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
     <Compile Include="Helpers\ProjectHelper.cs" />
-    <Compile Include="Helpers\PropertyReplaceHelpers\ReplacePropertyModelGenerator.cs" />
-    <Compile Include="Helpers\PropertyReplaceHelpers\ReplacePropertyHelper.cs" />
-    <Compile Include="Models\ReplacePropertyModel.cs" />
+    <Compile Include="Helpers\PlaceholderHelpers\PlaceholderModelGenerator.cs" />
+    <Compile Include="Helpers\PlaceholderHelpers\PlaceholderHelper.cs" />
+    <Compile Include="Models\PlaceholderModel.cs" />
     <Compile Include="Models\TemplateAndPropertyResult.cs" />
     <Compile Include="Services\GenerationServices\CommandCodeGenerators\CommandCodeGeneratorManager.cs" />
     <Compile Include="Services\GenerationServices\CommandCodeGenerators\ICommandCodeGeneratorService.cs" />
@@ -67,7 +67,7 @@
     <Compile Include="Services\GenerationServices\RepositoryCodeGenerators\RepositoryCodeGeneratorManager.cs" />
     <Compile Include="Services\GenerationServices\RuleCodeGenerators\IRuleCodeGeneratorService.cs" />
     <Compile Include="Services\GenerationServices\RuleCodeGenerators\RuleCodeGeneratorManager.cs" />
-    <Compile Include="Services\GenerationServices\Constants\PlaceHolderConstants.cs" />
+    <Compile Include="Services\GenerationServices\Constants\PlaceholderConstants.cs" />
     <Compile Include="Services\GenerationServices\ValidatorCodeGenerators\IValidatorCodeGeneratorService.cs" />
     <Compile Include="Services\GenerationServices\ValidatorCodeGenerators\ValidatorCodeGeneratorManager.cs" />
     <Compile Include="Services\ProjectServices\EnvDteTechnology\Constants\DteProjectVaraibles.cs" />

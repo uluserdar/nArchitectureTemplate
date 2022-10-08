@@ -2,7 +2,7 @@
 {
     public class TemplateAndPropertyResult
     {
-        public ReplacePropertyModel Properties { get; set; }
+        public PlaceholderModel Placeholders { get; set; }
         public string Template { get; set; }
     }
 }

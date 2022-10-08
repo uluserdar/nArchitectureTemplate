@@ -1,14 +1,14 @@
 ﻿using nArchitectureExtension.Helpers;
-using nArchitectureExtension.Helpers.ReplaceProperty;
+using nArchitectureExtension.Helpers.PlaceholderHelper;
 using nArchitectureExtension.Models;
 
 namespace nArchitectureExtension.Services.GenerationServices.RuleCodeGenerators
 {
     public class RuleCodeGeneratorManager : IRuleCodeGeneratorService
     {
-        private readonly ReplacePropertyModelGenerator _replacePropertyModelGenerator;
+        private readonly PlaceholderModelGenerator _replacePropertyModelGenerator;
 
-        public RuleCodeGeneratorManager(ReplacePropertyModelGenerator replacePropertyModelGenerator)
+        public RuleCodeGeneratorManager(PlaceholderModelGenerator replacePropertyModelGenerator)
         {
             _replacePropertyModelGenerator = replacePropertyModelGenerator;
         }
@@ -16,14 +16,14 @@ namespace nArchitectureExtension.Services.GenerationServices.RuleCodeGenerators
         public void GenerateRuleCode()
         {
             TemplateAndPropertyResult result = GetPropertyAndTemplate(Resources.TemplateFiles.Rule);
-            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(result.Properties.PluralEntityName)}\\Rules";
-            string filePath = $"{directoryPath}\\{result.Properties.EntityName}BusinessRule.cs";
+            string directoryPath = $"{PathHelper.GetApplicationFeaturesDirectoryPath(result.Placeholders.PluralEntityName)}\\Rules";
+            string filePath = $"{directoryPath}\\{result.Placeholders.EntityName}BusinessRule.cs";
             FileHelper.FileCreate(directoryPath, filePath, result.Template);
         }
 
         private TemplateAndPropertyResult GetPropertyAndTemplate(string template, bool generateProperties = false)
         {
-            ReplacePropertyModel replacePropertyModel = _replacePropertyModelGenerator.ReplacePropertyModelBuilder(
+            PlaceholderModel replacePropertyModel = _replacePropertyModelGenerator.PlaceholderModelBuilder(
                 new()
                 {
                     GetApplicationNamespace = true,
@@ -32,8 +32,8 @@ namespace nArchitectureExtension.Services.GenerationServices.RuleCodeGenerators
                 },
                 generateProperties: generateProperties);
 
-            string text = ReplacePropertyHelper.ReplaceProperties(replacePropertyModel, template);
-            return new() { Properties = replacePropertyModel, Template = text };
+            string text = PlaceholderHelper.ReplacePlaceholders(replacePropertyModel, template);
+            return new() { Placeholders = replacePropertyModel, Template = text };
         }
     }
 }
