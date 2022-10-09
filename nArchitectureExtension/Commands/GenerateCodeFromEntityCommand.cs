@@ -6,6 +6,7 @@ using nArchitectureExtension.Services.GenerationServices.CommandCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.ConstantCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.DtoCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.MappingProfileCodeGenerators;
+using nArchitectureExtension.Services.GenerationServices.PersistenceServiceGeneretors;
 using nArchitectureExtension.Services.GenerationServices.QueryCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.RepositoryCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.RuleCodeGenerators;
@@ -27,6 +28,7 @@ namespace nArchitectureExtension
         private readonly IRuleCodeGeneratorService _ruleCodeGeneratorService;
         private readonly IValidatorCodeGeneratorService _validatorCodeGeneratorService;
         private readonly IApplicationServiceGeneratorService _applicationGeneratorService;
+        private readonly IPersistenceServiceGeneratorService _persistenceServiceGeneratorService;
         private readonly IProjectService _projectService;
 
         public GenerateCodeFromEntityCommand()
@@ -39,7 +41,8 @@ namespace nArchitectureExtension
             _repositoryCodeGeneratorService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IRepositoryCodeGeneratorService>();
             _ruleCodeGeneratorService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IRuleCodeGeneratorService>();
             _validatorCodeGeneratorService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IValidatorCodeGeneratorService>();
-            _applicationGeneratorService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IApplicationServiceGeneratorService>();
+            _applicationGeneratorService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IApplicationServiceGeneratorService>(); 
+            _persistenceServiceGeneratorService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IPersistenceServiceGeneratorService>();
             _projectService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IProjectService>();
         }
 
@@ -73,6 +76,7 @@ namespace nArchitectureExtension
             _queryCodeGeneratorService.GenerateGetListQueryCode();
             _queryCodeGeneratorService.GenerateGetListByDynamicQueryCode();
             _applicationGeneratorService.InsertApplicationServiceCode();
+            _persistenceServiceGeneratorService.InsertPersistenceServiceCode();
 
         }
 

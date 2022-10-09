@@ -50,6 +50,8 @@
     <Compile Include="Helpers\PathHelper.cs" />
     <Compile Include="Services\GenerationServices\ApplicationServiceGenerators\ApplicationServiceGeneratorManager.cs" />
     <Compile Include="Services\GenerationServices\ApplicationServiceGenerators\IApplicationServiceGeneratorService.cs" />
+    <Compile Include="Services\GenerationServices\PersistenceServiceGeneretors\IPersistenceServiceGeneratorService.cs" />
+    <Compile Include="Services\GenerationServices\PersistenceServiceGeneretors\PersistenceServiceGeneretorManager.cs" />
     <Compile Include="Services\ProjectServices\EnvDteTechnology\Helpers\ClassModelGenerator.cs" />
     <Compile Include="Services\ProjectServices\EnvDteTechnology\Helpers\ProjectModelGenerator.cs" />
     <Compile Include="Helpers\ProjectHelper.cs" />
