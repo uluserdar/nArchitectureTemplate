@@ -9,7 +9,7 @@ namespace nArchitectureExtension.Helpers
         public static string GetApplicationFeaturesDirectoryPath(string pluralEntityName)
         {
             var projectService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IProjectService>();
-            var applicationProjectModel = projectService.GetProjectFromName("Application");
+            var applicationProjectModel = projectService.GetProjectModelFromName("Application");
             var result = $"{Path.GetDirectoryName(applicationProjectModel.FullPath)}\\Features\\{pluralEntityName}";
             return result;
         }
@@ -17,7 +17,7 @@ namespace nArchitectureExtension.Helpers
         public static string GetPersistenceRepositoriesDirectoryPath()
         {
             var projectService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IProjectService>();
-            var persistenceProjectModel = projectService.GetProjectFromName("Persistence");
+            var persistenceProjectModel = projectService.GetProjectModelFromName("Persistence");
             var result = $"{Path.GetDirectoryName(persistenceProjectModel.FullPath)}\\Repositories";
             return result;
         }
@@ -25,7 +25,7 @@ namespace nArchitectureExtension.Helpers
         public static string GetApplicationRepositoriesDirectoryPath()
         {
             var projectService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IProjectService>();
-            var applicationProjectModel = projectService.GetProjectFromName("Application");
+            var applicationProjectModel = projectService.GetProjectModelFromName("Application");
             var result = $"{Path.GetDirectoryName(applicationProjectModel.FullPath)}\\Services\\Repositories";
             return result;
         }

@@ -13,8 +13,8 @@ namespace nArchitectureExtension.Helpers.PlaceholderHelper
         public PlaceholderModelGenerator(IProjectService projectService)
         {
             _projectService = projectService;
-            _applicationProjectModel = _projectService.GetProjectFromName("Application");
-            _persistenceProjectModel = _projectService.GetProjectFromName("Persistence");
+            _applicationProjectModel = _projectService.GetProjectModelFromName("Application");
+            _persistenceProjectModel = _projectService.GetProjectModelFromName("Persistence");
         }
 
         public PlaceholderModel PlaceholderModelBuilder(PlaceholderSelector placeholderModelSelector, bool generateProperties = true)
@@ -36,7 +36,7 @@ namespace nArchitectureExtension.Helpers.PlaceholderHelper
 
         public (string Properties, ClassModel ClassModel) PropertyBuilder(bool generateProperties = true)
         {
-            ClassModel classModel = _projectService.GetSelectedEntity();
+            ClassModel classModel = _projectService.GetSelectedClassModel();
             if (generateProperties)
             {
                 StringBuilder properties = new();

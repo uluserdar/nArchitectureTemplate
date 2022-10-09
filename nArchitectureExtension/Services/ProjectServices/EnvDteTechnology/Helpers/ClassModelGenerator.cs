@@ -2,11 +2,7 @@
 using nArchitectureExtension.Helpers;
 using nArchitectureExtension.Models;
 using nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Constants;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpers
 {
@@ -14,7 +10,7 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpe
     {
         static ProjectItem _projectItem;
 
-        public static ClassModel ClassModelBuilder(CodeClass codeClass,ProjectItem projectItem, string classNamespcae)
+        public static ClassModel ClassModelBuilder(CodeClass codeClass, ProjectItem projectItem, string classNamespcae)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
