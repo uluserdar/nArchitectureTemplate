@@ -11,7 +11,7 @@ namespace nArchitectureExtension
         public const string Name = "nArchitecture Extension";
         public const string Description = @"nArchitecture Project TemplatenArchitecture Project Template";
         public const string Language = "en-US";
-        public const string Version = "1.1";
+        public const string Version = "1.2";
         public const string Author = "serdar";
         public const string Tags = "";
     }

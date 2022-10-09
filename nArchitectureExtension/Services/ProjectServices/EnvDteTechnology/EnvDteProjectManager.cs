@@ -1,5 +1,6 @@
 ﻿using EnvDTE;
 using EnvDTE80;
+using nArchitectureExtension.Constants;
 using nArchitectureExtension.Models;
 using nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpers;
 using System.Collections.Generic;
@@ -41,6 +42,29 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology
             CodeNamespace codeNamespace = EnvDteHelper.GetCodeProjectNamespace(codeModel);
 
             return ProjectModelGenerator.ProjectModelBuilder(project, codeNamespace.Name);
+        }
+
+        public void InserPropertyToClass(string projectName, string className, string insertCode)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            IEnumerable<Project> projects = dte.Solution.Projects.Cast<Project>();
+            Project project = EnvDteHelper.GetProjectFromName(projects, projectName);
+            FileCodeModel fileCodeModel = EnvDteHelper.GetCodeClassFromName(project, className,SolutionVariables.ContextsFolderName);
+            CodeNamespace codeNamespace = EnvDteHelper.GetCodeNamespace(fileCodeModel);
+            CodeClass codeClass = EnvDteHelper.GetCodeClass(codeNamespace);
+
+            TextPoint startPoint = codeClass.GetStartPoint(vsCMPart.vsCMPartBody);
+            TextPoint endPoint = codeClass.GetEndPoint();
+
+            var str = startPoint.CreateEditPoint().GetText(endPoint);
+
+            if (!str.Contains(insertCode))
+            {
+                TextPoint textPoint = codeClass.GetStartPoint(vsCMPart.vsCMPartBody);
+                textPoint.CreateEditPoint().Insert("\t\t" + insertCode + System.Environment.NewLine);
+            }
+
         }
 
         public void InsertCodeToFunction(string projectName,string className,string insertCode)

@@ -8,5 +8,6 @@ namespace nArchitectureExtension.Services.ProjectServices
         public ProjectModel GetSelectedProjectModel();
         public ProjectModel GetProjectModelFromName(string name);
         public void InsertCodeToFunction(string projectName, string className,string insertCode);
+        public void InserPropertyToClass(string projectName, string className,string insertCode);
     }
 }

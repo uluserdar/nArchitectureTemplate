@@ -5,6 +5,7 @@ using nArchitectureExtension.Models;
 using nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Constants;
 using System.Collections.Generic;
 using System.Linq;
+using VSLangProj80;
 using Project = EnvDTE.Project;
 
 namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpers
@@ -124,7 +125,27 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpe
             }
             
             return GetFileCodeModel(projectItem);
-            
+        }
+        public static FileCodeModel GetCodeClassFromName(Project project, string className,string folderName)
+        {
+            ProjectItem projectItem = null;
+            foreach (var item in project.ProjectItems.OfType<ProjectItem>())
+            {
+                
+                if (item?.Name == folderName)
+                {
+                    foreach (var x in item.ProjectItems.OfType<ProjectItem>())
+                    {
+                        if (x?.Name == className)
+                        {
+                            projectItem = x;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return GetFileCodeModel(projectItem);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using nArchitectureExtension.Helpers.PlaceholderHelper;
 using nArchitectureExtension.Services.GenerationServices.ApplicationServiceGenerators;
+using nArchitectureExtension.Services.GenerationServices.BaseDbContextGenerators;
 using nArchitectureExtension.Services.GenerationServices.CommandCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.ConstantCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.DtoCodeGenerators;
@@ -30,6 +31,7 @@ namespace nArchitectureExtension
             services.AddScoped<IValidatorCodeGeneratorService, ValidatorCodeGeneratorManager>();
             services.AddScoped<IApplicationServiceGeneratorService, ApplicationServiceGeneratorManager>();
             services.AddScoped<IPersistenceServiceGeneratorService, PersistenceServiceGeneretorManager>();
+            services.AddScoped<IBaseDbContextService, BaseDbContextManager>();
 
             services.AddScoped<PlaceholderModelGenerator>();
         }
