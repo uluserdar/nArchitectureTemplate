@@ -48,6 +48,8 @@
     <Compile Include="Commands\GenerateCodeFromEntityCommand.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
+    <Compile Include="Services\GenerationServices\ApplicationServiceGenerators\ApplicationServiceGeneratorManager.cs" />
+    <Compile Include="Services\GenerationServices\ApplicationServiceGenerators\IApplicationServiceGeneratorService.cs" />
     <Compile Include="Services\ProjectServices\EnvDteTechnology\Helpers\ClassModelGenerator.cs" />
     <Compile Include="Services\ProjectServices\EnvDteTechnology\Helpers\ProjectModelGenerator.cs" />
     <Compile Include="Helpers\ProjectHelper.cs" />
@@ -73,7 +75,7 @@
     <Compile Include="Services\GenerationServices\ValidatorCodeGenerators\IValidatorCodeGeneratorService.cs" />
     <Compile Include="Services\GenerationServices\ValidatorCodeGenerators\ValidatorCodeGeneratorManager.cs" />
     <Compile Include="Services\ProjectServices\EnvDteTechnology\Constants\DteProjectVaraibles.cs" />
-    <Compile Include="Services\ProjectServices\EnvDteTechnology\Constants\DteSolutionVariables.cs" />
+    <Compile Include="Constants\SolutionVariables.cs" />
     <Compile Include="Constants\Messages.cs" />
     <Compile Include="ServiceRegistration.cs" />
     <Compile Include="Services\ProjectServices\EnvDteTechnology\Helpers\EnvDteHelper.cs" />

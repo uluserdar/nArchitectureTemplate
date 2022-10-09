@@ -11,45 +11,12 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpe
 {
     public static class EnvDteHelper
     {
-        public static ClassModel GetSelectedClassModel(this DTE2 dte)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-            ProjectItem projectItem = GetSelectedProjectItem(dte);
-            if (!projectItem.Saved) projectItem.Save();
-            FileCodeModel fileCodeModel = GetFileCodeModel(projectItem);
-            CodeNamespace codeNamespace = GetCodeNamespace(fileCodeModel);
-            CodeClass codeClass = GetCodeClass(codeNamespace);
-
-            return ClassModelGenerator.ClassModelBuilder(codeClass, projectItem, codeNamespace.Name);
-        }
-
-        public static ProjectModel GetSelectedProjectModel(this DTE2 dte)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-            Project project = GetSelectedProject(dte);
-            CodeModel codeModel = project.CodeModel as CodeModel;
-            CodeNamespace codeNamespace = GetCodeProjectNamespace(codeModel);
-
-            return ProjectModelGenerator.ProjectModelBuilder(project,codeNamespace.Name);
-        }
-
-        public static ProjectModel GetProjectModelFromName(this DTE2 dte, string name)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-            IEnumerable<Project> projects = dte.Solution.Projects.Cast<Project>();
-            Project project = GetProjectFromName(projects, name);
-            CodeModel codeModel = project.CodeModel as CodeModel;
-            CodeNamespace codeNamespace = GetCodeProjectNamespace(codeModel);
-
-            return ProjectModelGenerator.ProjectModelBuilder(project,codeNamespace.Name);
-        }
-
-        private static Project GetSelectedProject(DTE2 dte)
+        public static Project GetSelectedProject(DTE2 dte)
         {
             return GetSelectedProjectItem(dte)?.ContainingProject;
         }
 
-        private static Project GetProjectFromName(IEnumerable<Project> projects, string name)
+        public static Project GetProjectFromName(IEnumerable<Project> projects, string name)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             foreach (Project project in projects)
@@ -79,7 +46,7 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpe
             return null;
         }
 
-        private static ProjectItem GetSelectedProjectItem(DTE2 dte)
+        public static ProjectItem GetSelectedProjectItem(DTE2 dte)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             ProjectItem result = null;
@@ -91,7 +58,7 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpe
             return result;
         }
 
-        private static FileCodeModel GetFileCodeModel(ProjectItem projectItem)
+        public static FileCodeModel GetFileCodeModel(ProjectItem projectItem)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             if (projectItem == null) return null;
@@ -99,7 +66,7 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpe
             return projectItem.FileCodeModel as FileCodeModel;
         }
 
-        private static CodeClass GetCodeClass(CodeNamespace codeNamespace)
+        public static CodeClass GetCodeClass(CodeNamespace codeNamespace)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             if (codeNamespace == null) return null;
@@ -113,7 +80,7 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpe
             return result;
         }
 
-        private static CodeNamespace GetCodeNamespace(FileCodeModel fileCodeModel)
+        public static CodeNamespace GetCodeNamespace(FileCodeModel fileCodeModel)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             if (fileCodeModel == null) return null;
@@ -130,7 +97,7 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpe
             return result;
         }
 
-        private static CodeNamespace GetCodeProjectNamespace(CodeModel codeModel)
+        public static CodeNamespace GetCodeProjectNamespace(CodeModel codeModel)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             if (codeModel == null) return null;
@@ -144,5 +111,20 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpe
             return result;
         }
 
+        public static FileCodeModel GetCodeClassFromName(Project project,string className)
+        {
+            ProjectItem projectItem = null;
+            foreach (var item in project.ProjectItems.OfType<ProjectItem>())
+            {
+                if (item?.Name == className)
+                {
+                    projectItem = item;
+                    break;
+                }
+            }
+            
+            return GetFileCodeModel(projectItem);
+            
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using EnvDTE;
 using Microsoft.Extensions.DependencyInjection;
 using nArchitectureExtension.Constants;
+using nArchitectureExtension.Services.GenerationServices.ApplicationServiceGenerators;
 using nArchitectureExtension.Services.GenerationServices.CommandCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.ConstantCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.DtoCodeGenerators;
@@ -25,6 +26,7 @@ namespace nArchitectureExtension
         private readonly IRepositoryCodeGeneratorService _repositoryCodeGeneratorService;
         private readonly IRuleCodeGeneratorService _ruleCodeGeneratorService;
         private readonly IValidatorCodeGeneratorService _validatorCodeGeneratorService;
+        private readonly IApplicationServiceGeneratorService _applicationGeneratorService;
         private readonly IProjectService _projectService;
 
         public GenerateCodeFromEntityCommand()
@@ -37,12 +39,13 @@ namespace nArchitectureExtension
             _repositoryCodeGeneratorService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IRepositoryCodeGeneratorService>();
             _ruleCodeGeneratorService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IRuleCodeGeneratorService>();
             _validatorCodeGeneratorService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IValidatorCodeGeneratorService>();
+            _applicationGeneratorService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IApplicationServiceGeneratorService>();
             _projectService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IProjectService>();
         }
 
         protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
         {
-            if (_projectService.GetSelectedEntity().BaseClassList.Any(x => x.Name == "Entity"))
+            if (_projectService.GetSelectedClassModel().BaseClassList.Any(x => x.Name == "Entity"))
                 Generate();
             else
                 await VS.MessageBox.ShowErrorAsync(Messages.InvalidSelectEntityMessage);
@@ -69,6 +72,8 @@ namespace nArchitectureExtension
             _queryCodeGeneratorService.GenerateGetByIdQueryCode();
             _queryCodeGeneratorService.GenerateGetListQueryCode();
             _queryCodeGeneratorService.GenerateGetListByDynamicQueryCode();
+            _applicationGeneratorService.InsertApplicationServiceCode();
+
         }
 
     }
