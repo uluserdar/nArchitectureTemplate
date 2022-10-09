@@ -14,5 +14,7 @@
         public static string FeaturesFolderName => "Features";
         public static string RulesFolderName => "Rules";
         public static string ApplicationServiceRegistrationClassName = "ApplicationServiceRegistration.cs";
+        public static string PersistenceServiceRegistrationClassName = "PersistenceServiceRegistration.cs";
+
     }
 }

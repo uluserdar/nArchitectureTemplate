@@ -5,6 +5,7 @@ using nArchitectureExtension.Services.GenerationServices.CommandCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.ConstantCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.DtoCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.MappingProfileCodeGenerators;
+using nArchitectureExtension.Services.GenerationServices.PersistenceServiceGeneretors;
 using nArchitectureExtension.Services.GenerationServices.QueryCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.RepositoryCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.RuleCodeGenerators;
@@ -28,6 +29,8 @@ namespace nArchitectureExtension
             services.AddScoped<IRuleCodeGeneratorService, RuleCodeGeneratorManager>();
             services.AddScoped<IValidatorCodeGeneratorService, ValidatorCodeGeneratorManager>();
             services.AddScoped<IApplicationServiceGeneratorService, ApplicationServiceGeneratorManager>();
+            services.AddScoped<IPersistenceServiceGeneratorService, PersistenceServiceGeneretorManager>();
+
             services.AddScoped<PlaceholderModelGenerator>();
         }
     }
