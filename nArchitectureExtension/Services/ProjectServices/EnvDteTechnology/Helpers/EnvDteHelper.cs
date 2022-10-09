@@ -20,20 +20,7 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpe
             CodeNamespace codeNamespace = GetCodeNamespace(fileCodeModel);
             CodeClass codeClass = GetCodeClass(codeNamespace);
 
-            ClassModel result = new ClassModel();
-            result.Name = PathHelper.GetFileNameWithoutExtension(projectItem.Properties.Item(DteProjectVaraibles.FullPath).Value.ToString());
-            result.CustomToolNamespace = projectItem.Properties.Item(DteProjectVaraibles.CustomToolNamespace).Value.ToString();
-            result.LocalPath = projectItem.Properties.Item(DteProjectVaraibles.LocalPath).Value.ToString();
-            result.FullPath = projectItem.Properties.Item(DteProjectVaraibles.FullPath).Value.ToString();
-            result.FileName = projectItem.Properties.Item(DteProjectVaraibles.FileName).Value.ToString();
-            result.FileNameAndExtension = projectItem.Properties.Item(DteProjectVaraibles.FileNameAndExtension).Value.ToString();
-            result.Extension = projectItem.Properties.Item(DteProjectVaraibles.Extension).Value.ToString();
-            result.Namespace = codeNamespace.Name;
-
-            SetBaseClassList(codeClass, result.BaseClassList);
-            SetProperties(codeClass, result.Properties);
-
-            return result;
+            return ClassModelGenerator.ClassModelBuilder(codeClass, projectItem, codeNamespace.Name);
         }
 
         public static ProjectModel GetSelectedProjectModel(this DTE2 dte)
@@ -43,24 +30,7 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpe
             CodeModel codeModel = project.CodeModel as CodeModel;
             CodeNamespace codeNamespace = GetCodeProjectNamespace(codeModel);
 
-            List<string> directoryList = project.FullName.Split('\\').ToList();
-            directoryList.RemoveAt(directoryList.Count - 1);
-            string directoryPath = string.Join("\\", directoryList);
-
-            ProjectItem projectItem = GetSelectedProjectItem(dte);
-
-            ProjectModel result = new ProjectModel
-            {
-                Name = project.Name,
-                Namespace = codeNamespace.Name,
-                DirectoryPath = directoryPath,
-                FullPath = projectItem.Properties.Item(DteProjectVaraibles.FullPath).Value.ToString(),
-                LocalPath = projectItem.Properties.Item(DteProjectVaraibles.LocalPath).Value.ToString(),
-                LocalNamespace = projectItem.Properties.Item(DteProjectVaraibles.LocalNamespace).Value.ToString(),
-                RootNamespace = projectItem.Properties.Item(DteProjectVaraibles.RootNamespace).Value.ToString()
-            };
-
-            return result;
+            return ProjectModelGenerator.ProjectModelBuilder(project,codeNamespace.Name);
         }
 
         public static ProjectModel GetProjectModelFromName(this DTE2 dte, string name)
@@ -71,22 +41,7 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpe
             CodeModel codeModel = project.CodeModel as CodeModel;
             CodeNamespace codeNamespace = GetCodeProjectNamespace(codeModel);
 
-            List<string> directoryList = project.FullName.Split('\\').ToList();
-            directoryList.RemoveAt(directoryList.Count - 1);
-            string directoryPath = string.Join("\\", directoryList);
-
-            ProjectModel result = new ProjectModel
-            {
-                Name = project.Name,
-                Namespace = codeNamespace.Name,
-                DirectoryPath = directoryPath,
-                FullPath = project.Properties.Item(DteProjectVaraibles.FullPath).Value.ToString(),
-                LocalPath = project.Properties.Item(DteProjectVaraibles.LocalPath).Value.ToString(),
-                LocalNamespace = project.Properties.Item(DteProjectVaraibles.LocalNamespace).Value.ToString(),
-                RootNamespace = project.Properties.Item(DteProjectVaraibles.RootNamespace).Value.ToString()
-            };
-
-            return result;
+            return ProjectModelGenerator.ProjectModelBuilder(project,codeNamespace.Name);
         }
 
         private static Project GetSelectedProject(DTE2 dte)
@@ -189,41 +144,5 @@ namespace nArchitectureExtension.Services.ProjectServices.EnvDteTechnology.Helpe
             return result;
         }
 
-        private static void SetBaseClassList(CodeClass codeClass, List<ClassModel> list)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-            if (codeClass == null) return;
-
-            foreach (var item in codeClass.Bases)
-            {
-                list.Add(new ClassModel { Name = (item as CodeClass).Name });
-            }
-        }
-
-        private static void SetProperties(CodeClass codeClass, List<PropertyModel> list)
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-            if (codeClass == null) return;
-
-            foreach (var item in codeClass.Members)
-            {
-                if (item is CodeProperty)
-                {
-                    CodeProperty codeProperty = (CodeProperty)item;
-                    list.Add(new PropertyModel
-                    {
-                        Name = codeProperty.Name,
-                        Type = codeProperty.Type.AsString,
-                        AccessModifier = codeProperty.Access.ToString()
-                    });
-
-                }
-            }
-
-            foreach (var item in codeClass.Bases)
-            {
-                SetProperties(item as CodeClass, list);
-            }
-        }
     }
 }
