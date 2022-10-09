@@ -48,6 +48,8 @@
     <Compile Include="Commands\GenerateCodeFromEntityCommand.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
+    <Compile Include="Services\ProjectServices\EnvDteTechnology\Helpers\ClassModelGenerator.cs" />
+    <Compile Include="Services\ProjectServices\EnvDteTechnology\Helpers\ProjectModelGenerator.cs" />
     <Compile Include="Helpers\ProjectHelper.cs" />
     <Compile Include="Helpers\PlaceholderHelpers\PlaceholderModelGenerator.cs" />
     <Compile Include="Helpers\PlaceholderHelpers\PlaceholderHelper.cs" />
