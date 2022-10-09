@@ -78,13 +78,13 @@ namespace nArchitectureExtension.Resources {
         /// <summary>
         ///   Looks up a localized string similar to using AutoMapper;
         ///using Core.Application.Pipelines.Authorization;
-        ///using {ApplicationNamespace}.Features.{PluralEntityname}.Dtos;
-        ///using {ApplicationNamespace}.Features.{PluralEntityname}.Rules;
+        ///using {ApplicationNamespace}.Features.{PluralEntityName}.Dtos;
+        ///using {ApplicationNamespace}.Features.{PluralEntityName}.Rules;
         ///using {ApplicationNamespace}.Services.Repositories;
         ///using {EntityNamespace};
         ///using MediatR;
         ///
-        ///namespace {ApplicationNamespace}.Features.{PluralEntityname}.Commands.Create{EntityName}
+        ///namespace {ApplicationNamespace}.Features.{PluralEntityName}.Commands.Create{EntityName}
         ///{
         ///    public class Create{EntityName}Command : IRequest&lt;Created{EntityName}Dto&gt;,ISecuredRequest
         ///    {
@@ -234,13 +234,13 @@ namespace nArchitectureExtension.Resources {
         ///using Core.Persistence.Paging;
         ///using {ApplicationNamespace}.Features.{PluralEntityName}.Models;
         ///using {ApplicationNamespace}.Services.Repositories;
-        ///using Kodlama.io.Devs.Domain.Entities;
-        ///using MediatR;
         ///using {EntityNamespace};
+        ///using MediatR;
+        ///using Microsoft.EntityFrameworkCore;
         ///
         ///namespace {ApplicationNamespace}.Features.{PluralEntityName}.Queries.GetListByDynamic{EntityName}
         ///{
-        ///    public class GetListByDynamic{Entity [rest of string was truncated]&quot;;.
+        ///    public class GetListByDynamic{EntityNa [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string GetListByDynamic {
             get {
@@ -323,7 +323,7 @@ namespace nArchitectureExtension.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to using Core.Persistence.Repositories;
-        ///using {ApplicationNamespace}.Contexts;
+        ///using {PersistenceNamespace}.Contexts;
         ///using {ApplicationNamespace}.Services.Repositories;
         ///using {EntityNamespace};
         ///
@@ -411,6 +411,22 @@ namespace nArchitectureExtension.Resources {
         internal static string UpdatedDto {
             get {
                 return ResourceManager.GetString("UpdatedDto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using Core.Application.Requests;
+        ///using Core.Persistence.Dynamic;
+        ///using {ApplicationNamespace}.Features.{PluralEntityName}.Commands.Create{EntityName};
+        ///using {ApplicationNamespace}.Features.{PluralEntityName}.Commands.Delete{EntityName};
+        ///using {ApplicationNamespace}.Features.{PluralEntityName}.Commands.Update{EntityName};
+        ///using {ApplicationNamespace}.Features.{PluralEntityName}.Queries.GetById{EntityName};
+        ///using {ApplicationNamespace}.Features.{PluralEntityName}.Queries.GetListByDynamic{EntityName};
+        ///u [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string WebApiController {
+            get {
+                return ResourceManager.GetString("WebApiController", resourceCulture);
             }
         }
     }

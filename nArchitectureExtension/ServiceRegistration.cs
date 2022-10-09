@@ -11,6 +11,7 @@ using nArchitectureExtension.Services.GenerationServices.QueryCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.RepositoryCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.RuleCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.ValidatorCodeGenerators;
+using nArchitectureExtension.Services.GenerationServices.WebApiControllerGenerators;
 using nArchitectureExtension.Services.ProjectServices;
 using nArchitectureExtension.Services.ProjectServices.EnvDteTechnology;
 
@@ -32,6 +33,7 @@ namespace nArchitectureExtension
             services.AddScoped<IApplicationServiceGeneratorService, ApplicationServiceGeneratorManager>();
             services.AddScoped<IPersistenceServiceGeneratorService, PersistenceServiceGeneretorManager>();
             services.AddScoped<IBaseDbContextService, BaseDbContextManager>();
+            services.AddScoped<IWebApiControllerGeneratorService, WebApiControllerGeneratorManager>();
 
             services.AddScoped<PlaceholderModelGenerator>();
         }

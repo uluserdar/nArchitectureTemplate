@@ -30,6 +30,14 @@ namespace nArchitectureExtension.Helpers
             return result;
         }
 
+        public static string GetWebApiDirectoryPath()
+        {
+            var projectService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IProjectService>();
+            var applicationProjectModel = projectService.GetProjectModelFromName("WebAPI");
+            var result = $"{Path.GetDirectoryName(applicationProjectModel.FullPath)}";
+            return result;
+        }
+
         public static string GetFileNameWithoutExtension(string path)
         {
             return Path.GetFileNameWithoutExtension(path);

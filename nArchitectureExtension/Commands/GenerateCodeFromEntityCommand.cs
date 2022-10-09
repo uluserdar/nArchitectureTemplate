@@ -12,6 +12,7 @@ using nArchitectureExtension.Services.GenerationServices.QueryCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.RepositoryCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.RuleCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.ValidatorCodeGenerators;
+using nArchitectureExtension.Services.GenerationServices.WebApiControllerGenerators;
 using nArchitectureExtension.Services.ProjectServices;
 using System.Linq;
 
@@ -31,6 +32,7 @@ namespace nArchitectureExtension
         private readonly IApplicationServiceGeneratorService _applicationGeneratorService;
         private readonly IPersistenceServiceGeneratorService _persistenceServiceGeneratorService;
         private readonly IBaseDbContextService _baseDbContextService;
+        private readonly IWebApiControllerGeneratorService _webApiControllerGeneratorService;
         private readonly IProjectService _projectService;
 
         public GenerateCodeFromEntityCommand()
@@ -45,6 +47,8 @@ namespace nArchitectureExtension
             _validatorCodeGeneratorService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IValidatorCodeGeneratorService>();
             _applicationGeneratorService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IApplicationServiceGeneratorService>(); 
             _persistenceServiceGeneratorService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IPersistenceServiceGeneratorService>();
+            _baseDbContextService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IBaseDbContextService>();
+            _webApiControllerGeneratorService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IWebApiControllerGeneratorService>();
             _baseDbContextService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IBaseDbContextService>();
             _projectService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IProjectService>();
         }
@@ -81,6 +85,7 @@ namespace nArchitectureExtension
             _applicationGeneratorService.InsertApplicationServiceCode();
             _persistenceServiceGeneratorService.InsertPersistenceServiceCode();
             _baseDbContextService.InsertBaseDbContextCode();
+            _webApiControllerGeneratorService.GenerateControllerCode();
 
         }
 
