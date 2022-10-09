@@ -54,6 +54,8 @@
     <Compile Include="Services\GenerationServices\BaseDbContextGenerators\IBaseDbContextService.cs" />
     <Compile Include="Services\GenerationServices\PersistenceServiceGeneretors\IPersistenceServiceGeneratorService.cs" />
     <Compile Include="Services\GenerationServices\PersistenceServiceGeneretors\PersistenceServiceGeneretorManager.cs" />
+    <Compile Include="Services\GenerationServices\WebApiControllerGenerators\WebApiControllerGeneratorManager.cs" />
+    <Compile Include="Services\GenerationServices\WebApiControllerGenerators\IWebApiControllerGeneratorService.cs" />
     <Compile Include="Services\ProjectServices\EnvDteTechnology\Helpers\ClassModelGenerator.cs" />
     <Compile Include="Services\ProjectServices\EnvDteTechnology\Helpers\ProjectModelGenerator.cs" />
     <Compile Include="Helpers\ProjectHelper.cs" />
@@ -111,6 +113,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <None Include="Resources\WebApiController.txt" />
     <None Include="Resources\Constant.txt" />
     <None Include="Resources\DeleteCommandTemplate.txt" />
     <None Include="Resources\CommandValidor.txt" />
