@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using nArchitectureExtension.Constants;
 using nArchitectureExtension.Services.GenerationServices.ApplicationServiceGenerators;
+using nArchitectureExtension.Services.GenerationServices.BaseDbContextGenerators;
 using nArchitectureExtension.Services.GenerationServices.CommandCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.ConstantCodeGenerators;
 using nArchitectureExtension.Services.GenerationServices.DtoCodeGenerators;
@@ -29,6 +30,7 @@ namespace nArchitectureExtension
         private readonly IValidatorCodeGeneratorService _validatorCodeGeneratorService;
         private readonly IApplicationServiceGeneratorService _applicationGeneratorService;
         private readonly IPersistenceServiceGeneratorService _persistenceServiceGeneratorService;
+        private readonly IBaseDbContextService _baseDbContextService;
         private readonly IProjectService _projectService;
 
         public GenerateCodeFromEntityCommand()
@@ -43,6 +45,7 @@ namespace nArchitectureExtension
             _validatorCodeGeneratorService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IValidatorCodeGeneratorService>();
             _applicationGeneratorService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IApplicationServiceGeneratorService>(); 
             _persistenceServiceGeneratorService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IPersistenceServiceGeneratorService>();
+            _baseDbContextService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IBaseDbContextService>();
             _projectService = nArchitectureExtensionPackage.Services.BuildServiceProvider().GetService<IProjectService>();
         }
 
@@ -77,6 +80,7 @@ namespace nArchitectureExtension
             _queryCodeGeneratorService.GenerateGetListByDynamicQueryCode();
             _applicationGeneratorService.InsertApplicationServiceCode();
             _persistenceServiceGeneratorService.InsertPersistenceServiceCode();
+            _baseDbContextService.InsertBaseDbContextCode();
 
         }
 

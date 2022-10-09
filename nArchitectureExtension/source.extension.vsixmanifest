@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="nArchitectureExtension.b451418e-cf7f-406a-bbf2-e8caa0f513e2" Version="1.1" Language="en-US" Publisher="serdar" />
+        <Identity Id="nArchitectureExtension.b451418e-cf7f-406a-bbf2-e8caa0f513e2" Version="1.2" Language="en-US" Publisher="serdar" />
         <DisplayName>nArchitecture Extension</DisplayName>
         <Description xml:space="preserve">nArchitecture Project TemplatenArchitecture Project Template</Description>
         <Icon>Resources\Icon.png</Icon>
